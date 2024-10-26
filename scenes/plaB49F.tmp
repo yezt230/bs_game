@@ -1,0 +1,235 @@
+[gd_scene load_steps=26 format=3 uid="uid://ctydm86mw6o0w"]
+
+[ext_resource type="Texture2D" uid="uid://euetvvb24e66" path="res://game_assets/images/knight.png" id="1_jiv72"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="2_7nnsm"]
+[ext_resource type="Texture2D" uid="uid://d30ljec6xqbuu" path="res://game_assets/images/Butterscotch_Shooting_Sprites.png" id="2_bwli0"]
+[ext_resource type="PackedScene" uid="uid://bokvfttscjs0y" path="res://scenes/weapon_manager.tscn" id="4_joh38"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0oy4"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(0, 156, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7va7o"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(80, 52, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkhw5"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(40, 52, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfmco"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(0, 52, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrt6x"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(0, 104, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_il1y2"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(40, 104, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1psua"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(80, 104, 40, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mq2s0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0oy4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7va7o")
+}],
+"loop": true,
+"name": &"jump_falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkhw5")
+}],
+"loop": true,
+"name": &"jump_neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfmco")
+}],
+"loop": true,
+"name": &"jump_rising",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrt6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il1y2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1psua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il1y2")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cghcm"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(0, 676, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7yym"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(80, 520, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgv3u"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(40, 520, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j1l4"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(0, 520, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5ina"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(0, 416, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7icy"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(40, 416, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rknf"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(80, 416, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40ia5"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(0, 364, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28ajh"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(40, 364, 40, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvq3y"]
+atlas = ExtResource("2_bwli0")
+region = Rect2(80, 364, 40, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_icipj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cghcm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7yym")
+}],
+"loop": true,
+"name": &"jump_falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgv3u")
+}],
+"loop": true,
+"name": &"jump_neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j1l4")
+}],
+"loop": true,
+"name": &"jump_rising",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5ina")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7icy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rknf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7icy")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40ia5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28ajh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvq3y")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ll38r"]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6oewq"]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+position = Vector2(0, -16)
+script = ExtResource("2_7nnsm")
+
+[node name="BottomSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -80)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_mq2s0")
+animation = &"idle"
+
+[node name="TopSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -83)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_icipj")
+animation = &"idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("1_jiv72")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-12, 0)
+shape = SubResource("CircleShape2D_ll38r")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-12, -96)
+shape = SubResource("CircleShape2D_ll38r")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-12, -48)
+scale = Vector2(1.5, 4)
+shape = SubResource("RectangleShape2D_6oewq")
+
+[node name="WeaponManager" parent="." instance=ExtResource("4_joh38")]
+
+[connection signal="bullet_direction" from="." to="." method="_on_bullet_direction"]

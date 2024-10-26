@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmp5bu4aaub1y"]
+
+[ext_resource type="PackedScene" uid="uid://b3krwsbge1tol" path="res://scenes/level.tscn" id="1_ulgfm"]
+[ext_resource type="PackedScene" uid="uid://ctydm86mw6o0w" path="res://scenes/player.tscn" id="2_gcldj"]
+[ext_resource type="PackedScene" uid="uid://b5k06sqfy0ndx" path="res://scenes/bullet.tscn" id="2_k1nxu"]
+[ext_resource type="PackedScene" uid="uid://chj7wybcxnj82" path="res://scenes/game_camera.tscn" id="3_stnfs"]
+[ext_resource type="Script" path="res://scenes/game_camera.gd" id="4_w3jwh"]
+[ext_resource type="PackedScene" uid="uid://bokvfttscjs0y" path="res://scenes/weapon_manager.tscn" id="7_5grur"]
+
+[node name="Main" type="Node2D"]
+
+[node name="WeaponManager" parent="." instance=ExtResource("7_5grur")]
+bullet_scene = ExtResource("2_k1nxu")
+
+[node name="Level" parent="." instance=ExtResource("1_ulgfm")]
+position = Vector2(377, 351)
+
+[node name="Player" parent="." instance=ExtResource("2_gcldj")]
+position = Vector2(-4512, 142)
+
+[node name="GameCamera" parent="." instance=ExtResource("3_stnfs")]
+script = ExtResource("4_w3jwh")

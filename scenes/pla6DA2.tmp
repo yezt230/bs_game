@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctydm86mw6o0w"]
+
+[ext_resource type="Texture2D" uid="uid://euetvvb24e66" path="res://game_assets/images/knight.png" id="1_jiv72"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="2_7nnsm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ll38r"]
+radius = 8.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -8)
+script = ExtResource("2_7nnsm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jiv72")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ll38r")
