@@ -12,6 +12,11 @@ var direction = Vector2.RIGHT
 func _process(_delta):
 	move_bullet()
 
+#func _physics_process(delta):
+	#var collision = move_and_collide(velocity * delta)
+	#if collision:
+		#print("collided with: ", collision.get_collider().name)
+
 
 func _ready():
 	_draw()
@@ -30,7 +35,12 @@ func set_direction(updated_direction: int):
 func move_bullet():
 	#velocity.x = MOVE_SPEED
 	velocity.x = direction * MOVE_SPEED
+	#print("thingy")
 	move_and_slide()
+	for i in get_slide_collision_count():
+		print("collided")
+		var collision = get_slide_collision(i)
+		print("Collided with: ", collision.get_collider().name)
 
 
 func _on_timer_timeout():

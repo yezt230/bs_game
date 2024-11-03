@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckk5w10n1vys1"]
+
+[ext_resource type="Texture2D" uid="uid://cdc5k5fm5rx2y" path="res://game_assets/images/square_nodetails_outline.png" id="1_iugrq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kaqnc"]
+size = Vector2(100, 105)
+
+[node name="StationaryEnemy" type="CharacterBody2D"]
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -56)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_iugrq")
+region_enabled = true
+region_rect = Rect2(0, 1720, 286, 282)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -52)
+shape = SubResource("RectangleShape2D_kaqnc")

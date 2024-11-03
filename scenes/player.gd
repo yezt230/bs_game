@@ -125,12 +125,12 @@ func check_shooting_animation(animation: String):
 	else:
 		if top_sprite.animation != "shoot":
 			if not looking_up:
-				print("not looking up")
+				#print("not looking up")
 				top_sprite.play("shoot")
 				if not is_crouching:
 					top_sprite.position = SHOOT_OFFSET
 			else:
-				print("looking up")
+				#print("looking up")
 				top_sprite.play("shoot_up")
 		bottom_sprite.play(animation)		
 

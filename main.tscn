@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmp5bu4aaub1y"]
+[gd_scene load_steps=8 format=3 uid="uid://dmp5bu4aaub1y"]
 
 [ext_resource type="PackedScene" uid="uid://b3krwsbge1tol" path="res://scenes/level.tscn" id="1_ulgfm"]
 [ext_resource type="PackedScene" uid="uid://ctydm86mw6o0w" path="res://scenes/player.tscn" id="2_gcldj"]
 [ext_resource type="PackedScene" uid="uid://b5k06sqfy0ndx" path="res://scenes/bullet.tscn" id="2_k1nxu"]
 [ext_resource type="PackedScene" uid="uid://chj7wybcxnj82" path="res://scenes/game_camera.tscn" id="3_stnfs"]
 [ext_resource type="Script" path="res://scenes/game_camera.gd" id="4_w3jwh"]
+[ext_resource type="PackedScene" uid="uid://ckk5w10n1vys1" path="res://scenes/stationary_enemy.tscn" id="7_1r5o4"]
 [ext_resource type="PackedScene" uid="uid://bokvfttscjs0y" path="res://scenes/weapon_manager.tscn" id="7_5grur"]
 
 [node name="Main" type="Node2D"]
@@ -20,3 +21,6 @@ position = Vector2(-4512, 142)
 
 [node name="GameCamera" parent="." instance=ExtResource("3_stnfs")]
 script = ExtResource("4_w3jwh")
+
+[node name="StationaryEnemy" parent="." instance=ExtResource("7_1r5o4")]
+position = Vector2(-3114, 433)
