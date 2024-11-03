@@ -51,7 +51,7 @@ func get_movement():
 		if walk > 0:
 			#player_direction = Vector2.RIGHT
 			player_direction = 1
-		elif walk < 0:
+		elif walk < 0: 
 			#player_direction = Vector2.LEFT
 			player_direction = -1
 	else:
@@ -144,6 +144,3 @@ func all_sprites(action: String, param = null):
 				sprite.flip_h = param
 			"play":
 				sprite.play(param)
-
-
-
