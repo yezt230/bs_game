@@ -5,7 +5,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kaqnc"]
 size = Vector2(100, 105)
 
-[node name="StationaryEnemy" type="CharacterBody2D"]
+[node name="StationaryEnemy" type="Area2D"]
+collision_layer = 3
 
 [node name="Visuals" type="Node2D" parent="."]
 
