@@ -38,9 +38,10 @@ func move_bullet():
 	#print("thingy")
 	move_and_slide()
 	for i in get_slide_collision_count():
-		print("collided")
+		#print("collided")
 		var collision = get_slide_collision(i)
 		print("Collided with: ", collision.get_collider().name)
+		queue_free()
 
 
 func _on_timer_timeout():
