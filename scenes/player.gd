@@ -29,8 +29,10 @@ var weapon_manager: Node = null
 #@onready var weapon_manager = $WeaponManager
 @onready var top_sprite = $TopSprite
 @onready var bottom_sprite = $BottomSprite	
+@onready var state_machine = $StateMachine
 
 func _ready():
+	state_machine.init(self)
 	weapon_manager = get_parent().get_node("WeaponManager")
 
 
