@@ -40,6 +40,7 @@ func _process(_delta):
 	get_movement()
 	if Input.is_action_just_pressed("shoot"):
 		weapon_manager.shoot(position, player_direction)
+	$StateLabel.text = state_machine.get_current_state()
 		
 
 func get_movement():	
@@ -82,9 +83,6 @@ func get_movement():
 		looking_up = true
 	else:
 		looking_up = false
-	
-	if is_on_floor() and Input.is_action_just_pressed(&"jump"):
-		velocity.y = -JUMP_FORCE
 		
 	update_animations(walk)	
 	move_and_slide()	
