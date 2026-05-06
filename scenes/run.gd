@@ -1,0 +1,20 @@
+extends State
+
+@export var jump_state: State
+@export var idle_state: State
+#@export var run_shoot_state: State
+#@onready var player = $"../.."
+
+func enter() -> void:
+	super()
+	#if parent.is_on_floor():
+		#parent.animation_player.play("run")
+
+func process_input(_event: InputEvent) -> State:
+	if Input.is_action_just_pressed("jump"):
+		return jump_state
+	#elif Input.is_action_just_pressed("SPACE") and player.attack_timer_ended:
+		#return run_shoot_state
+	elif not Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right"):
+		return idle_state
+	return null

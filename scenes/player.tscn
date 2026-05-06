@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ctydm86mw6o0w"]
+[gd_scene load_steps=38 format=3 uid="uid://ctydm86mw6o0w"]
 
 [ext_resource type="Texture2D" uid="uid://euetvvb24e66" path="res://game_assets/images/knight.png" id="1_jiv72"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_7nnsm"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ghl0r6j2owvg" path="res://scenes/state_machine.tscn" id="4_4mdha"]
 [ext_resource type="Script" path="res://scenes/idle_state.gd" id="5_yfu6o"]
 [ext_resource type="Script" path="res://scenes/jump.gd" id="6_3hg5q"]
+[ext_resource type="Script" path="res://scenes/run.gd" id="7_hivca"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ibv5x"]
 atlas = ExtResource("2_bwli0")
@@ -326,19 +327,26 @@ shape = SubResource("RectangleShape2D_6oewq")
 [node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("4_4mdha")]
 starting_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("run_state", "jump_state")]
 script = ExtResource("5_yfu6o")
+run_state = NodePath("../Run")
 jump_state = NodePath("../Jump")
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "run_state")]
 script = ExtResource("6_3hg5q")
+idle_state = NodePath("../Idle")
+run_state = NodePath("../Run")
+
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "idle_state")]
+script = ExtResource("7_hivca")
+jump_state = NodePath("../Jump")
 idle_state = NodePath("../Idle")
 
 [node name="StateLabel" type="Label" parent="."]
 offset_left = 45.0
-offset_top = -109.0
-offset_right = 85.0
-offset_bottom = -86.0
+offset_top = -147.0
+offset_right = 109.0
+offset_bottom = -102.0
 theme_override_colors/font_color = Color(0.756863, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8

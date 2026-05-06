@@ -105,16 +105,7 @@ func update_animations(input_axis):
 		if looking_up and not is_shooting:		
 			top_sprite.play("look_up")
 	
-	if not is_on_floor():
-		if velocity.y > 150:
-			#all_sprites("play", "jump_falling")
-			check_shooting_animation("jump_falling")
-		elif velocity.y <=150 and velocity.y > -150:
-			#all_sprites("play", "jump_neutral")
-			check_shooting_animation("jump_neutral")
-		else:
-			#all_sprites("play", "jump_rising")
-			check_shooting_animation("jump_rising")
+
 		#add jump
 				
 
