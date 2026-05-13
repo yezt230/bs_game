@@ -6,7 +6,8 @@ extends State
 
 func enter() -> void:
 	super()
-	#parent.animation_player.play("idle")
+	if parent.is_on_floor():
+		parent.player_animations.play("idle")
 
 func process_input(_event: InputEvent) -> State:
 	if parent.is_on_floor() and Input.is_action_just_pressed(&"jump"):

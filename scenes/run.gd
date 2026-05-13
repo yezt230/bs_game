@@ -7,8 +7,8 @@ extends State
 
 func enter() -> void:
 	super()
-	#if parent.is_on_floor():
-		#parent.animation_player.play("run")
+	if parent.is_on_floor():
+		parent.player_animations.play("run")
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("jump"):

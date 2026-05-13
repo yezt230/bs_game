@@ -18,12 +18,11 @@ var falling_speed = 0
 var is_shooting = false
 var is_crouching = false
 var looking_up = false
-
 var player_direction = 1
 var weapon_manager: Node = null
 
 @onready var gravity := float(ProjectSettings.get_setting("physics/2d/default_gravity"))
-
+@onready var player_animations = $PlayerAnimations
 @onready var state_machine = $StateMachine
 
 func _ready():
