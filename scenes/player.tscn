@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctydm86mw6o0w"]
+[gd_scene load_steps=18 format=3 uid="uid://ctydm86mw6o0w"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_7nnsm"]
 [ext_resource type="Texture2D" uid="uid://defvh4ijkkyjb" path="res://game_assets/images/Butterscotch_Game_Sprites_Player-Sheet.png" id="2_fblos"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/idle_state.gd" id="5_yfu6o"]
 [ext_resource type="Script" path="res://scenes/jump.gd" id="6_3hg5q"]
 [ext_resource type="Script" path="res://scenes/run.gd" id="7_hivca"]
+[ext_resource type="PackedScene" uid="uid://dtlw4ht41bxo4" path="res://attack_controller.tscn" id="8_3jshn"]
 [ext_resource type="Script" path="res://scenes/punch.gd" id="8_6unga"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3dj2q"]
@@ -113,6 +114,23 @@ tracks/0/keys = {
 "values": [16]
 }
 
+[sub_resource type="Animation" id="Animation_sppnh"]
+resource_name = "punch"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [35]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nnn6h"]
 _data = {
 "RESET": SubResource("Animation_bpaw8"),
@@ -120,6 +138,7 @@ _data = {
 "jump_falling": SubResource("Animation_b58gl"),
 "jump_middle": SubResource("Animation_palnl"),
 "jump_rising": SubResource("Animation_e2kps"),
+"punch": SubResource("Animation_sppnh"),
 "run": SubResource("Animation_j63nv")
 }
 
@@ -161,6 +180,8 @@ idle_state = NodePath("../Idle")
 [node name="Punch" type="Node" parent="StateMachine"]
 script = ExtResource("8_6unga")
 
+[node name="AttackController" parent="." instance=ExtResource("8_3jshn")]
+
 [node name="StateLabel" type="Label" parent="."]
 offset_left = 45.0
 offset_top = -147.0
@@ -170,10 +191,12 @@ theme_override_colors/font_color = Color(0.756863, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 32
-text = "tecx
+text = "text
 "
 
 [node name="PlayerAnimations" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_nnn6h")
 }
+
+[node name="Node" type="Node" parent="."]

@@ -26,6 +26,10 @@ window/vsync/vsync_mode=0
 
 movie_writer/disable_vsync=true
 
+[global_group]
+
+player=""
+
 [input]
 
 ui_left={
