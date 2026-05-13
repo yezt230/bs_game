@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctydm86mw6o0w"]
+[gd_scene load_steps=9 format=3 uid="uid://ctydm86mw6o0w"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_7nnsm"]
 [ext_resource type="Texture2D" uid="uid://defvh4ijkkyjb" path="res://game_assets/images/Butterscotch_Game_Sprites_Player-Sheet.png" id="2_fblos"]
@@ -8,32 +8,25 @@
 [ext_resource type="Script" path="res://scenes/run.gd" id="7_hivca"]
 [ext_resource type="Script" path="res://scenes/punch.gd" id="8_6unga"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ll38r"]
-radius = 16.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6oewq"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3dj2q"]
+radius = 14.0
+height = 128.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(0, -16)
 script = ExtResource("2_7nnsm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-12, 0)
-shape = SubResource("CircleShape2D_ll38r")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-12, -96)
-shape = SubResource("CircleShape2D_ll38r")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(-12, -48)
-scale = Vector2(1.5, 4)
-shape = SubResource("RectangleShape2D_6oewq")
-
 [node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -88)
+scale = Vector2(4, 4)
 texture = ExtResource("2_fblos")
 hframes = 7
 vframes = 8
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(0, -47)
+shape = SubResource("CapsuleShape2D_3dj2q")
+debug_color = Color(0.8605, 0.330326, 0.393302, 0.42)
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("4_4mdha")]
 starting_state = NodePath("Idle")
