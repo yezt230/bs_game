@@ -25,6 +25,7 @@ var weapon_manager: Node = null
 @onready var player_sprite : Sprite2D = $PlayerSprite
 @onready var player_animations : AnimationPlayer = $PlayerAnimations
 @onready var state_machine : Node = $StateMachine
+@onready var attack_controller = $AttackController
 
 @onready var player_sprite_scale = player_sprite.scale.x
 
@@ -38,7 +39,11 @@ func _process(_delta):
 	if Input.is_action_just_pressed("shoot"):
 		weapon_manager.shoot(position, player_direction)
 	$StateLabel.text = state_machine.get_current_state()
-		
+	
+	#print($PlayerAnimations.current_animation)
+	
+func test_print():
+	print("method call")
 
 func get_movement():	
 	velocity.y += floor(gravity/16)
@@ -70,6 +75,7 @@ func get_movement():
 	
 	if Input.is_action_pressed("shoot"):
 		is_shooting = true
+		state_machine.change_state($StateMachine/Punch)
 	else:
 		is_shooting = false
 		
