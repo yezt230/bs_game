@@ -13,22 +13,17 @@ const DEFAULT_OFFSET = Vector2(0, -80)
 #Better way to load & populate the scene with the bullet?
 const BULLETSCENE = preload("res://scenes/bullet.tscn")
 
-#signal bullet_direction(bullet_direction_var: String)
-
 var move_speed = 0
 var falling_speed = 0
 var is_shooting = false
 var is_crouching = false
 var looking_up = false
-#var facing_right = true
-#var player_direction: Vector2 = Vector2.RIGHT
+
 var player_direction = 1
 var weapon_manager: Node = null
 
 @onready var gravity := float(ProjectSettings.get_setting("physics/2d/default_gravity"))
-#@onready var weapon_manager = $WeaponManager
-@onready var top_sprite = $TopSprite
-@onready var bottom_sprite = $BottomSprite	
+
 @onready var state_machine = $StateMachine
 
 func _ready():
@@ -84,54 +79,4 @@ func get_movement():
 	else:
 		looking_up = false
 		
-	update_animations(walk)	
 	move_and_slide()	
-
-
-func update_animations(input_axis):
-	if input_axis != 0:
-		all_sprites("flip_h", input_axis < 0)
-		# TODO: this syncs the frame btwn top & bottom run animations
-		#but the wrong frame plays for a split second, making it flicker
-		if is_on_floor():
-			top_sprite.frame = bottom_sprite.frame
-			check_shooting_animation("run")
-	else:
-		if is_on_floor():
-			if not is_crouching:
-				check_shooting_animation("idle")
-			else:
-				check_shooting_animation("crouch")
-		if looking_up and not is_shooting:		
-			top_sprite.play("look_up")
-	
-
-		#add jump
-				
-
-func check_shooting_animation(animation: String):
-	if not is_shooting:
-		all_sprites("play", animation)
-		top_sprite.position = DEFAULT_OFFSET
-	else:
-		if top_sprite.animation != "shoot":
-			if not looking_up:
-				#print("not looking up")
-				top_sprite.play("shoot")
-				if not is_crouching:
-					top_sprite.position = SHOOT_OFFSET
-			else:
-				#print("looking up")
-				top_sprite.play("shoot_up")
-		bottom_sprite.play(animation)		
-
-
-func all_sprites(action: String, param = null):
-	var sprites = [top_sprite, bottom_sprite] 
-	
-	for sprite in sprites:
-		match action:
-			"flip_h":
-				sprite.flip_h = param
-			"play":
-				sprite.play(param)

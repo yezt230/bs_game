@@ -2,6 +2,7 @@ extends State
 
 @export var run_state: State
 @export var jump_state: State
+@export var punch_state: State
 
 func enter() -> void:
 	super()
