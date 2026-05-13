@@ -15,7 +15,6 @@ func physics_update(_delta: float) -> State:
 		return run_state if parent.velocity.x != 0 else idle_state
 	
 	if not parent.is_on_floor():
-		print(parent.velocity.y)
 		if parent.velocity.y < -200:
 			parent.player_animations.play("jump_rising")
 		elif parent.velocity.y >= -200 and parent.velocity.y < 200:

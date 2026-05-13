@@ -22,8 +22,11 @@ var player_direction = 1
 var weapon_manager: Node = null
 
 @onready var gravity := float(ProjectSettings.get_setting("physics/2d/default_gravity"))
-@onready var player_animations = $PlayerAnimations
-@onready var state_machine = $StateMachine
+@onready var player_sprite : Sprite2D = $PlayerSprite
+@onready var player_animations : AnimationPlayer = $PlayerAnimations
+@onready var state_machine : Node = $StateMachine
+
+@onready var player_sprite_scale = player_sprite.scale.x
 
 func _ready():
 	state_machine.init(self)
@@ -62,6 +65,8 @@ func get_movement():
 				move_speed = 0
 	move_speed = clamp(move_speed, -MAX_SPEED, MAX_SPEED)
 	velocity.x = move_speed
+
+	player_sprite.scale.x = (player_direction * player_sprite_scale)
 	
 	if Input.is_action_pressed("shoot"):
 		is_shooting = true
