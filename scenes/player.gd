@@ -8,18 +8,13 @@ const ACCEL_FORCE = 24
 const DECEL_FORCE = ACCEL_FORCE * 2
 const JUMP_FORCE = 1500
 
-const SHOOT_OFFSET = Vector2(0, -130)
 const DEFAULT_OFFSET = Vector2(0, -80)
-#Better way to load & populate the scene with the bullet?
-const BULLETSCENE = preload("res://scenes/bullet.tscn")
 
 var move_speed = 0
 var falling_speed = 0
-var is_shooting = false
 var is_crouching = false
 var looking_up = false
 var player_direction = 1
-var weapon_manager: Node = null
 
 @onready var gravity := float(ProjectSettings.get_setting("physics/2d/default_gravity"))
 @onready var player_sprite : Sprite2D = $PlayerSprite
@@ -31,13 +26,10 @@ var weapon_manager: Node = null
 
 func _ready():
 	state_machine.init(self)
-	weapon_manager = get_parent().get_node("WeaponManager")
 
 
 func _process(_delta):
 	get_movement()
-	if Input.is_action_just_pressed("shoot"):
-		weapon_manager.shoot(position, player_direction)
 	$StateLabel.text = state_machine.get_current_state()
 	
 	#print($PlayerAnimations.current_animation)
@@ -74,15 +66,11 @@ func get_movement():
 	player_sprite.scale.x = (player_direction * player_sprite_scale)
 	
 	if Input.is_action_just_pressed("shoot"):
-
-		is_shooting = true
-
 		if state_machine.current_state != $StateMachine/Punch:
 			state_machine.change_state($StateMachine/Punch)
 		else:
-			state_machine.current_state.evaluate_combo()
-	else:
-		is_shooting = false
+			state_machine.current_state.advance_combo()
+
 		
 	if Input.is_action_pressed("crouch"):
 		is_crouching = true

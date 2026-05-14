@@ -32,9 +32,8 @@ func physics_update(_delta: float) -> State:
 	return null
 
 
-func evaluate_combo() -> void:
+func advance_combo() -> void:
 	combo_inc += 1
-	print("combo_inc: " + str(combo_inc))
 	match combo_inc:
 		1:
 			print("Punch 1")
