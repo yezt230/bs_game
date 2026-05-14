@@ -12,14 +12,22 @@ enum PunchComboState {
 
 var combo_state: PunchComboState = PunchComboState.NONE
 var combo_inc : int = 0
+var punch_ready : bool
+@onready var debug_label = $"../../DebugLabel"
 
 func enter() -> void:
 	super()
 
+	punch_ready = false
 	combo_state = PunchComboState.PUNCH_1
 	combo_inc = 0
 	#start_combo_state()
 	parent.player_animations.play("punch")
+
+
+func _process(delta):
+	debug_label.text = str(combo_inc)
+
 
 func exit() -> void:
 	super()
@@ -33,14 +41,22 @@ func physics_update(_delta: float) -> State:
 
 
 func advance_combo() -> void:
-	combo_inc += 1
-	match combo_inc:
-		1:
-			print("Punch 1")
-			parent.player_animations.play("punch1")
-		2:
-			print("Punch 2")
-			parent.player_animations.play("punch2")
+	if punch_ready:
+		combo_inc += 1
+		match combo_inc:
+			1:
+				print("Punch 1")
+				parent.player_animations.stop()
+				parent.player_animations.play("punch")
+			2:
+				print("Punch 2")
+				parent.player_animations.play("punch1")
+			3:
+				print("Punch 3")
+				parent.player_animations.play("punch2")
+	else:
+		print("too early")
+
 
 #
 ## Called from animation method track
@@ -77,7 +93,12 @@ func advance_combo() -> void:
 	##else:
 		#finish_combo()
 
+func enable_punch():
+	punch_ready = true
 
+
+func disable_punch():
+	punch_ready = false
 # Called from final animation frame
 #func finish_combo() -> void:
 #
