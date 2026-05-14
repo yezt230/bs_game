@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctydm86mw6o0w"]
+[gd_scene load_steps=20 format=3 uid="uid://ctydm86mw6o0w"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_7nnsm"]
 [ext_resource type="Texture2D" uid="uid://defvh4ijkkyjb" path="res://game_assets/images/Butterscotch_Game_Sprites_Player-Sheet.png" id="2_fblos"]
@@ -147,6 +147,82 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_rvq12"]
+resource_name = "punch1"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [36]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackController")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"return_to_idle"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"test_print"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_lwp8w"]
+resource_name = "punch2"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [37]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackController")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"return_to_idle"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nnn6h"]
 _data = {
 "RESET": SubResource("Animation_bpaw8"),
@@ -155,10 +231,13 @@ _data = {
 "jump_middle": SubResource("Animation_palnl"),
 "jump_rising": SubResource("Animation_e2kps"),
 "punch": SubResource("Animation_sppnh"),
+"punch1": SubResource("Animation_rvq12"),
+"punch2": SubResource("Animation_lwp8w"),
 "run": SubResource("Animation_j63nv")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+visible = false
 position = Vector2(0, -16)
 script = ExtResource("2_7nnsm")
 

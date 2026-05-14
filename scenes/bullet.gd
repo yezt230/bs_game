@@ -30,12 +30,12 @@ func move_bullet():
 	move_and_slide()
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		print("damage")
+		#print("damage")
 		
 		if collision.get_collider().is_in_group("enemies"):
-			print("damage dealt")
+			#print("damage dealt")
 			collision.get_collider().take_damage()
-			print("Collided with: ", collision.get_collider().name)
+			#print("Collided with: ", collision.get_collider().name)
 		queue_free()
 
 

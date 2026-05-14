@@ -7,7 +7,7 @@ func _ready():
 
 
 func take_damage():
-	print('damage taken')
+	#print('damage taken')
 	if health > 0:
 		health -= 1
 		update_tint()

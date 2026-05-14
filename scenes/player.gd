@@ -73,9 +73,14 @@ func get_movement():
 
 	player_sprite.scale.x = (player_direction * player_sprite_scale)
 	
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot"):
+
 		is_shooting = true
-		state_machine.change_state($StateMachine/Punch)
+
+		if state_machine.current_state != $StateMachine/Punch:
+			state_machine.change_state($StateMachine/Punch)
+		else:
+			state_machine.current_state.evaluate_combo()
 	else:
 		is_shooting = false
 		
