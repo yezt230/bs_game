@@ -17,7 +17,6 @@ bullet_scene = ExtResource("2_k1nxu")
 position = Vector2(377, 351)
 
 [node name="Player" parent="." instance=ExtResource("2_gcldj")]
-visible = true
 position = Vector2(-4512, 142)
 
 [node name="GameCamera" parent="." instance=ExtResource("3_stnfs")]

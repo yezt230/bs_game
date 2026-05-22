@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvixjs2hrc0mi"]
+
+[ext_resource type="Script" path="res://scenes/walking_enemy.gd" id="1_fpx0q"]
+[ext_resource type="Texture2D" uid="uid://rcfxquh6jru0" path="res://game_assets/images/Butterscotch_Game_Sprites_Enemy1-Sheet.png" id="2_mo63s"]
+
+[sub_resource type="Animation" id="Animation_qkbxs"]
+resource_name = "standing"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [48]
+}
+
+[sub_resource type="Animation" id="Animation_2e32x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_htknl"]
+_data = {
+"RESET": SubResource("Animation_2e32x"),
+"standing": SubResource("Animation_qkbxs")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2tosk"]
+size = Vector2(13, 33)
+
+[node name="WalkingEnemy" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_fpx0q")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("2_mo63s")
+hframes = 6
+vframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_htknl")
+}
+autoplay = "standing"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -17.5)
+shape = SubResource("RectangleShape2D_2tosk")
