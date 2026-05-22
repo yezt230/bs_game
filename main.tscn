@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmp5bu4aaub1y"]
+[gd_scene load_steps=9 format=3 uid="uid://dmp5bu4aaub1y"]
 
 [ext_resource type="PackedScene" uid="uid://b3krwsbge1tol" path="res://scenes/level.tscn" id="1_ulgfm"]
 [ext_resource type="PackedScene" uid="uid://ctydm86mw6o0w" path="res://scenes/player.tscn" id="2_gcldj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scenes/game_camera.gd" id="4_w3jwh"]
 [ext_resource type="PackedScene" uid="uid://ckk5w10n1vys1" path="res://scenes/stationary_enemy.tscn" id="7_1r5o4"]
 [ext_resource type="PackedScene" uid="uid://bokvfttscjs0y" path="res://scenes/weapon_manager.tscn" id="7_5grur"]
+[ext_resource type="PackedScene" uid="uid://dvixjs2hrc0mi" path="res://scenes/walking_enemy.tscn" id="8_gfmpj"]
 
 [node name="Main" type="Node2D"]
 
@@ -30,3 +31,6 @@ position = Vector2(-3915, 434)
 
 [node name="StationaryEnemy3" parent="." instance=ExtResource("7_1r5o4")]
 position = Vector2(-4080, 434)
+
+[node name="WalkingEnemy" parent="." instance=ExtResource("8_gfmpj")]
+position = Vector2(-4357, 434)

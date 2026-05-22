@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ctydm86mw6o0w"]
+[gd_scene load_steps=21 format=3 uid="uid://ctydm86mw6o0w"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_7nnsm"]
 [ext_resource type="Texture2D" uid="uid://defvh4ijkkyjb" path="res://game_assets/images/Butterscotch_Game_Sprites_Player-Sheet.png" id="2_fblos"]
@@ -145,6 +145,23 @@ tracks/2/keys = {
 "method": &"enable_punch"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StateMachine/Punch")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"punch_collision_enabled"
+}, {
+"args": [],
+"method": &"punch_collision_disabled"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_rvq12"]
 resource_name = "punch1"
@@ -193,6 +210,23 @@ tracks/2/keys = {
 "method": &"enable_punch"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StateMachine/Punch")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"punch_collision_enabled"
+}, {
+"args": [],
+"method": &"punch_collision_disabled"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_lwp8w"]
 resource_name = "punch2"
@@ -213,15 +247,18 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackController")
+tracks/1/path = NodePath("StateMachine/Punch")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"return_to_idle"
+"method": &"disable_punch"
+}, {
+"args": [],
+"method": &"enable_punch"
 }]
 }
 tracks/2/type = "method"
@@ -235,10 +272,10 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"disable_punch"
+"method": &"punch_collision_enabled"
 }, {
 "args": [],
-"method": &"enable_punch"
+"method": &"punch_collision_disabled"
 }]
 }
 
@@ -272,6 +309,9 @@ _data = {
 "punch2": SubResource("Animation_lwp8w"),
 "run": SubResource("Animation_j63nv")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_omt2d"]
+radius = 3.0104
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(0, -16)
@@ -338,4 +378,13 @@ libraries = {
 "": SubResource("AnimationLibrary_nnn6h")
 }
 
-[node name="Node" type="Node" parent="."]
+[node name="PunchHitbox" type="Area2D" parent="."]
+position = Vector2(0, -88)
+scale = Vector2(4, 4)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PunchHitbox"]
+position = Vector2(15.5, 3.5)
+shape = SubResource("CircleShape2D_omt2d")
+disabled = true

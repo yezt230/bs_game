@@ -9,11 +9,13 @@ enum PunchComboState {
 }
 
 @onready var animation_player = $"../../PlayerAnimations"
+@onready var punch_hitbox = $"../../PunchHitbox"
+@onready var punch_collision : CollisionShape2D = $"../../PunchHitbox/CollisionShape2D"
+@onready var debug_label = $"../../DebugLabel"
 
 var combo_state: PunchComboState = PunchComboState.NONE
 var combo_inc : int = 0
 var punch_ready : bool
-@onready var debug_label = $"../../DebugLabel"
 
 func enter() -> void:
 	super()
@@ -58,52 +60,18 @@ func advance_combo() -> void:
 		print("too early")
 
 
-#
-## Called from animation method track
-#func open_combo_window() -> void:
-	#combo_window_open = true
-#
-#
-## Called from animation method track
-#func close_combo_window() -> void:
-	#combo_window_open = false
-
-#
-## Called from animation method track
-#func advance_combo() -> void:
-#
-	#if combo_window_open and combo_buffered:
-#
-		#combo_buffered = false
-#
-		#match combo_state:
-#
-			#PunchComboState.PUNCH_1:
-				#combo_state = PunchComboState.PUNCH_2
-				#start_combo_state()
-#
-			#PunchComboState.PUNCH_2:
-				#combo_state = PunchComboState.PUNCH_3
-				#start_combo_state()
-#
-			#PunchComboState.PUNCH_3:
-				#combo_state = PunchComboState.RECOVERY
-				#start_combo_state()
-#
-	##else:
-		#finish_combo()
-
 func enable_punch():
 	punch_ready = true
-
+	
 
 func disable_punch():
 	punch_ready = false
-# Called from final animation frame
-#func finish_combo() -> void:
-#
-	#combo_state = PunchComboState.NONE
-	#combo_buffered = false
-	#combo_window_open = false
-#
-	#state_machine.change_state(idle_state)
+	punch_collision.disabled = true
+
+
+func punch_collision_enabled():
+	punch_collision.disabled = false
+	
+	
+func punch_collision_disabled():
+	punch_collision.disabled = true

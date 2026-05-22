@@ -1,7 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvixjs2hrc0mi"]
+[gd_scene load_steps=8 format=3 uid="uid://dvixjs2hrc0mi"]
 
 [ext_resource type="Script" path="res://scenes/walking_enemy.gd" id="1_fpx0q"]
 [ext_resource type="Texture2D" uid="uid://rcfxquh6jru0" path="res://game_assets/images/Butterscotch_Game_Sprites_Enemy1-Sheet.png" id="2_mo63s"]
+
+[sub_resource type="Animation" id="Animation_2e32x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_qkbxs"]
 resource_name = "standing"
@@ -19,21 +34,6 @@ tracks/0/keys = {
 "values": [48]
 }
 
-[sub_resource type="Animation" id="Animation_2e32x"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_htknl"]
 _data = {
 "RESET": SubResource("Animation_2e32x"),
@@ -41,14 +41,18 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2tosk"]
-size = Vector2(13, 33)
+size = Vector2(77, 125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nes4"]
+size = Vector2(105, 136)
 
 [node name="WalkingEnemy" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_fpx0q")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
-position = Vector2(0, -24)
+position = Vector2(0, -96)
+scale = Vector2(4, 4)
 texture = ExtResource("2_mo63s")
 hframes = 6
 vframes = 10
@@ -60,5 +64,17 @@ libraries = {
 autoplay = "standing"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -17.5)
+position = Vector2(-1.5, -63.5)
 shape = SubResource("RectangleShape2D_2tosk")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-3.5, -65)
+shape = SubResource("RectangleShape2D_3nes4")
+debug_color = Color(0.767862, 0.388636, 0.581608, 0.42)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
